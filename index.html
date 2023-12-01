@@ -19,77 +19,85 @@
 	</div>
 	
 	<h1 id="header">DECA Entrepreneurship Practice Mc thingie</h1>
-	<p id="question">nothing here</p>
-	<form>
-		<input type="radio" id="1" name="answers" value="1">
-		<label for="1" id="la1">1</label><br>
-		<input type="radio" id="2" name="answers" value="2">
-		<label for="2" id="la2">2</label><br>
-		<input type="radio" id="3" name="answers" value="3">
-		<label for="3" id="la3">3</label><br>
-		<input type="radio" id="4" name="answers" value="4">
-		<label for="4" id="la4">4</label><br><br>
-		<input id="button" type="button" value="Submit">
-	</form>
+
+	<div id="examContent">
+		<p id="question">nothing here</p>
+		<form>
+			<input type="radio" id="1" name="answers" value="1">
+			<label for="1" id="la1">1</label><br>
+			<input type="radio" id="2" name="answers" value="2">
+			<label for="2" id="la2">2</label><br>
+			<input type="radio" id="3" name="answers" value="3">
+			<label for="3" id="la3">3</label><br>
+			<input type="radio" id="4" name="answers" value="4">
+			<label for="4" id="la4">4</label><br><br>
+			<input id="button" type="button" value="Submit">
+		</form>
+	</div>
+	
 	<br>
 	<p>Score:</p>
 	<p id="score">0/0</p>
 	<p id="score2">0%</p>
 
-	<br><br>
-	<button type='button' id="calcButton">Open Calculator</button>
-	<br><br>
-	
-	<form>
-		<label for="choices">Choose An Exam:</label>
-		<select name="choices" id="choices">
-			<option value="bac">Business Administration Core</option>
-			<option value="bma">Business Management & Administration(not done)</option>
-			<option value="entrepeur">Entrepenurship</option>
-			<option value="finance">Finance(not done)</option>
-			<option value="hoptou">Hospitality & Tourism(not done)</option>
-			<option value="market">Marketing(not done)</option>
-			<option value="perfinli">Personal Financial Literacy(not done)</option>
-		</select>
-		<br>
-		<button type='button' id="changeValue">Change</button>
-	</form>
-	<br>
-	
-	<div id="calculatormain">
-		<div id="calculatorheader">Calculator</div>
-		<form name = "form1">
-			<input id = "calcanswer" type ="text" name = "answer"> 
+	<div id="calculatorDiv">
+		<br><br>
+		<button type='button' id="calcButton">Open Calculator</button>
+		<br><br>
+		
+		<form>
+			<label for="choices">Choose An Exam:</label>
+			<select name="choices" id="choices">
+				<option value="bac">Business Administration Core</option>
+				<option value="bma">Business Management & Administration(not done)</option>
+				<option value="entrepeur">Entrepenurship</option>
+				<option value="finance">Finance(not done)</option>
+				<option value="hoptou">Hospitality & Tourism(not done)</option>
+				<option value="market">Marketing(not done)</option>
+				<option value="perfinli">Personal Financial Literacy(not done)</option>
+			</select>
 			<br>
-
-			<input class = "calcmainbuttons" type = "button" value = "1" onclick = "form1.answer.value += '1' ">
-			<input class = "calcmainbuttons" type = "button" value = "2" onclick = "form1.answer.value += '2' ">
-			<input class = "calcmainbuttons" type = "button" value = "3" onclick = "form1.answer.value += '3' ">
-			<input class = "calcbsidebuttons" type = "button" value = "+" onclick = "form1.answer.value += '+' ">
-			<br>
-
-			<input class = "calcmainbuttons" type = "button" value = "4" onclick = "form1.answer.value += '4' ">
-			<input class = "calcmainbuttons" type = "button" value = "5" onclick = "form1.answer.value += '5' ">
-			<input class = "calcmainbuttons" type = "button" value = "6" onclick = "form1.answer.value += '6' ">
-			<input class = "calcbsidebuttons" type = "button" value = "-" onclick = "form1.answer.value += '-' ">
-			<br>
-
-			<input class = "calcmainbuttons" type = "button" value = "7" onclick = "form1.answer.value += '7' ">
-			<input class = "calcmainbuttons" type = "button" value = "8" onclick = "form1.answer.value += '8' ">
-			<input class = "calcmainbuttons" type = "button" value = "9" onclick = "form1.answer.value += '9' ">
-			<input class = "calcbsidebuttons" type = "button" value = "×" onclick = "form1.answer.value += '*' ">
-			<br>
-
-			<input class = "calcmainbuttons" type = "button" value = "/" onclick = "form1.answer.value += '/' ">
-			<input class = "calcmainbuttons" type = "button" value = "0" onclick = "form1.answer.value += '0' ">
-			<input class = "calcbsidebuttons" type = "button" value = "." onclick = "form1.answer.value += '.' ">
-			<input class = "calcbsidebuttons" type = "button" value = "C" onclick = "form1.answer.value = ' ' ">
-			<br>
-			<input type = "button" value = "=" id = "equals" onclick = "form1.answer.value = eval(form1.answer.value) ">
-			<br>
-			<p></p>
+			<button type='button' id="changeValue">Change</button>
 		</form>
-		<script type="module" src="calculator.js"></script>
+		<br>
+		
+		<div id="calculatorDiv">
+			<div id="calculatormain">
+				<div id="calculatorheader">Calculator</div>
+				<form name = "form1">
+					<input id = "calcanswer" type ="text" name = "answer"> 
+					<br>
+
+					<input class = "calcmainbuttons" type = "button" value = "1" onclick = "form1.answer.value += '1' ">
+					<input class = "calcmainbuttons" type = "button" value = "2" onclick = "form1.answer.value += '2' ">
+					<input class = "calcmainbuttons" type = "button" value = "3" onclick = "form1.answer.value += '3' ">
+					<input class = "calcbsidebuttons" type = "button" value = "+" onclick = "form1.answer.value += '+' ">
+					<br>
+
+					<input class = "calcmainbuttons" type = "button" value = "4" onclick = "form1.answer.value += '4' ">
+					<input class = "calcmainbuttons" type = "button" value = "5" onclick = "form1.answer.value += '5' ">
+					<input class = "calcmainbuttons" type = "button" value = "6" onclick = "form1.answer.value += '6' ">
+					<input class = "calcbsidebuttons" type = "button" value = "-" onclick = "form1.answer.value += '-' ">
+					<br>
+
+					<input class = "calcmainbuttons" type = "button" value = "7" onclick = "form1.answer.value += '7' ">
+					<input class = "calcmainbuttons" type = "button" value = "8" onclick = "form1.answer.value += '8' ">
+					<input class = "calcmainbuttons" type = "button" value = "9" onclick = "form1.answer.value += '9' ">
+					<input class = "calcbsidebuttons" type = "button" value = "×" onclick = "form1.answer.value += '*' ">
+					<br>
+
+					<input class = "calcmainbuttons" type = "button" value = "/" onclick = "form1.answer.value += '/' ">
+					<input class = "calcmainbuttons" type = "button" value = "0" onclick = "form1.answer.value += '0' ">
+					<input class = "calcbsidebuttons" type = "button" value = "." onclick = "form1.answer.value += '.' ">
+					<input class = "calcbsidebuttons" type = "button" value = "C" onclick = "form1.answer.value = ' ' ">
+					<br>
+					<input type = "button" value = "=" id = "equals" onclick = "form1.answer.value = eval(form1.answer.value) ">
+					<br>
+					<p></p>
+				</form>
+				<script type="module" src="calculator.js"></script>
+			</div>
+		</div>
 	</div>
 
 	<footer class="footer">

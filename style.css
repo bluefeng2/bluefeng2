@@ -95,3 +95,7 @@ html {
 	border-color: transparent;
 	text-align: center;
 }
+
+#examcontent {
+	inline-size: 150px;
+}
