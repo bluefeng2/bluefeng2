@@ -72,7 +72,7 @@ function changebutton(){
 function check(){
 	var radios = document.getElementsByName('answers');
 	var value;
-	var checked == false;
+	var checked = false;
 	for (var i = 0; i < radios.length; i++) {
 		if (radios[i].type === 'radio' && radios[i].checked) {
 		value = radios[i].value;  
