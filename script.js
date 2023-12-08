@@ -72,19 +72,26 @@ function changebutton(){
 function check(){
 	var radios = document.getElementsByName('answers');
 	var value;
+	var checked == false;
 	for (var i = 0; i < radios.length; i++) {
 		if (radios[i].type === 'radio' && radios[i].checked) {
 		value = radios[i].value;  
+			checked = true;
 			if(value.toString() == curAnswer.toString()){
 				changeColor(value, "green");
 				changebutton()
 				correctCount+=1;
+				return False
 			} else {
 				changeColor(value, "red");
 				changeColor(curAnswer, "green");
 				changebutton()
+				return False
 			}
 		}
+	}
+	if (checked == false) {
+		return False
 	}
 }
 
@@ -97,8 +104,9 @@ function resetColors(){
 
 document.getElementById('button').onclick = function() {
 	if (document.getElementById("button").value == "Submit"){
-		check();
-		total+=1;
+		if (check()) {
+			total+=1;
+		}
 		reset();
 	} else {
 		getData();
