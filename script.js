@@ -82,12 +82,12 @@ function check(){
 				changeColor(value, "green");
 				changebutton()
 				correctCount+=1;
-				return false;
+				return true;
 			} else {
 				changeColor(value, "red");
 				changeColor(curAnswer, "green");
 				changebutton()
-				return false;
+				return true;
 			}
 		}
 	}
