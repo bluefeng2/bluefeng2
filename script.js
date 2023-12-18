@@ -82,17 +82,17 @@ function check(){
 				changeColor(value, "green");
 				changebutton()
 				correctCount+=1;
-				return False
+				return false;
 			} else {
 				changeColor(value, "red");
 				changeColor(curAnswer, "green");
 				changebutton()
-				return False
+				return false;
 			}
 		}
 	}
 	if (checked == false) {
-		return False
+		return false;
 	}
 }
 
