@@ -10,8 +10,9 @@ var correctCount = 0;
 
 function reset(){
 	var ele = document.getElementsByName("answers");
-	for(var i=0;i<ele.length;i++)
-			ele[i].checked = false;
+	for(var i=0;i<ele.length;i++) {
+		ele[i].checked = false;
+	}		
 }
 
 function getRandomInt(max) {
