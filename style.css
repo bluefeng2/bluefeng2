@@ -85,7 +85,7 @@ html {
 	border: 5px solid black;
 	padding: 5px;
 	text-align: center;
-	float: right;
+	
 }
 
 #timercount {
@@ -96,6 +96,18 @@ html {
 	text-align: center;
 }
 
-#examcontent {
-	inline-size: 150px;
+#leaderboard {
+	width: 150px;
+	border: 5px solid black;
+	padding: 5px;
+}
+
+#side {
+	float: right;
+}
+
+#signin {
+	width: 150px;
+	border: 5px solid black;
+	padding: 5px;
 }

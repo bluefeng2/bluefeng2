@@ -10,8 +10,9 @@ var correctCount = 0;
 
 function reset(){
 	var ele = document.getElementsByName("answers");
-	for(var i=0;i<ele.length;i++)
-			ele[i].checked = false;
+	for(var i=0;i<ele.length;i++) {
+		ele[i].checked = false;
+	}
 }
 
 function getRandomInt(max) {
@@ -79,6 +80,8 @@ function check(){
 				changeColor(value, "green");
 				changebutton()
 				correctCount+=1;
+				addtotQ();
+				addcorQ()
 			} else {
 				changeColor(value, "red");
 				changeColor(curAnswer, "green");
@@ -87,6 +90,25 @@ function check(){
 		}
 	}
 }
+
+function updateAccount(username = "", password = "", corQ = 0, totQ = 0) {
+	if (curAcc["Username"] != "") {
+		updateInfo(username, password, corQ, totQ);
+	}
+}
+
+function addcorQ() {
+	if (info["Username"] != "") {
+		updateInfo("", "", info["corQ"] + 1, 0);
+	}
+}
+
+function addtotQ() {
+	if (info["Username"] != "") {
+		updateInfo("", "", 0, info["totQ"]+1);
+	}
+}
+
 
 function resetColors(){
 	document.getElementById("la1").style.color = "black";
@@ -99,6 +121,7 @@ document.getElementById('button').onclick = function() {
 	if (document.getElementById("button").value == "Submit"){
 		check();
 		total+=1;
+		addtotQ();
 		reset();
 	} else {
 		getData();
@@ -158,3 +181,129 @@ document.getElementById('changeValue').onclick = function() {
 }
 
 dragElement(document.getElementById("calculatormain"));
+
+const element = document.querySelector('#examContent');
+var viewportWidth  = document.documentElement.clientWidth;
+var wid = viewportWidth-200;
+element.style.cssText = "inline-size: "+wid.toString()+"px;";
+
+var url = "http://127.0.0.1:5167";
+
+var info = {"username": "",
+            "password": "",
+            "corQ": 0,
+            "totQ": 0,}
+    
+
+function getInfo() {
+    return info;
+}
+
+function updateInfo(username = "", password = "", corQ = 0, totQ = 0) {
+    if (username != ""){
+        info["username"] = username;
+    }
+    if (password != ""){
+        info["password"] = password;
+    }
+    if (parseInt(corQ) != 0){
+        info["corQ"] = parseInt(corQ);
+    }
+    if (parseInt(totQ) != 0){
+        info["totQ"] = parseInt(totQ);
+    }
+	console.log(info);
+	fetch(url+"/update", {
+        method: "POST",
+        body: JSON.stringify({
+            "username": info["username"],
+            "password": info["password"],
+			"corQ": info["corQ"],
+			"totQ": info["totQ"]
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+        }
+        })
+        .then((response) => response.text())
+        .then((text) => console.log(text));
+
+}
+
+function login(text) {
+    text = text.replaceAll("[","")
+    text = text.replaceAll("]","")
+    text = text.replaceAll("\n","")
+    text = text.replaceAll('"',"")
+    text = text.split(",")
+    if (text != "Wrong") {
+        info["username"] = text[0];
+        info["password"] = text[1];
+        info["corQ"] = parseInt(text[2]);
+        info["totQ"] = parseInt(text[3]);
+		document.getElementById('p2').innerHTML = "<p style='text-align: center'>Signed In As: "+info["username"]+"</p><input type='button' id='signOut' value='Sign Out'>";
+		document.getElementById('p2').style = "display:block";
+		document.getElementById('p1').style = "display:none";
+		
+		resetColors();
+		reset();
+    }
+    
+}
+
+function resetInfo() {
+	info = {"username": "",
+	"password": "",
+	"corQ": 0,
+	"totQ": 0,}
+}
+
+document.getElementById('signOut').onclick = function() {
+	//document.getElementById('signin').innerHTML = '<form id="loginform"><input type="text" id="username" placeholder="Username" size="16"><br><input type="text" id="password" placeholder="Password" size="16"><button type="button" id="register">Register</button><button type="button" id="login">Login</button></form>';
+	console.log("aaa");
+	document.getElementById('p1').style = "display:block";
+	document.getElementById('p2').style = "display:none";
+	reset();
+	resetColors();
+	resetInfo();
+	
+}
+document.getElementById('p1').style = "display:block";
+document.getElementById('p2').style = "display:none";
+
+
+document.getElementById('register').onclick = function() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    fetch(url+"/newAcc", {
+        method: "POST",
+        body: JSON.stringify({
+            "username": username,
+            "password": password
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+        }
+        })
+        .then((response) => response.text())
+        .then((text) => console.log(text));
+}
+
+document.getElementById('login').onclick = function() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+        
+    fetch(url+"/login", {
+    method: "POST",
+    body: JSON.stringify({
+        "username": username,
+        "password": password
+    }),
+    headers: {
+        "Content-type": "application/json; charset=UTF-8",
+    }
+    })
+    .then((response) => response.text())
+    .then((text) => login(text));
+}
