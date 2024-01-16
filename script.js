@@ -205,7 +205,7 @@ var viewportWidth = document.documentElement.clientWidth;
 var wid = viewportWidth - 200;
 element.style.cssText = "inline-size: " + wid.toString() + "px;";
 
-var url = "fakesneakysnake.pythonanywhere.com";
+var url = "https://fakesneakysnake.pythonanywhere.com";
 
 var info = {
   "username": "",
