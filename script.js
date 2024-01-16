@@ -141,7 +141,8 @@ document.getElementById('button').onclick = function() {
     resetColors();
     document.getElementById("button").value = "Submit";
   }
-
+  
+  document.getElementById("score").innerHTML = correctCount.toString() + "/" + total.toString();
 
   if (total == 0, correctCount == 0) {
 	document.getElementById("score2").innerHTML = "0%";
