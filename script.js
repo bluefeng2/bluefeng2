@@ -237,7 +237,8 @@ function updateInfo(corQ, totQ) {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     }
-  })
+  }).then((response) => response.text())
+    .then((text) => console.log(text));
 
 }
 
