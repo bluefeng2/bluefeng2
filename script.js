@@ -85,9 +85,8 @@ function check() {
         changeColor(value, "green");
         changebutton()
         correctCount += 1;
-        if (info["username"] != "") {
-          addcorQ();
-        }
+        addcorQ();
+        
         return true;
       } else {
         changeColor(value, "red");
@@ -113,13 +112,13 @@ function updateAccount(corQ = 0, totQ = 0) {//not done
 
 function addcorQ() {
   if (info["username"] != "") {
-    updateInfo(info["corQ"] + 1, info["totQ"] + 1);
+    updateInfo(info["corQ"] + 1, parseInt(info["totQ"]) + 1);
   }
 }
 
 function addtotQ() {
   if (info["username"] != "") {
-    updateInfo(info["corQ"], info["totQ"] + 1);
+    updateInfo(info["corQ"], parseInt(info["totQ"]) + 1);
   }
 }
 
@@ -141,7 +140,8 @@ document.getElementById('button').onclick = function() {
     resetColors();
     document.getElementById("button").value = "Submit";
   }
-
+  
+  document.getElementById("score").innerHTML = correctCount.toString() + "/" + total.toString();
 
   if (total == 0, correctCount == 0) {
 	document.getElementById("score2").innerHTML = "0%";
@@ -204,7 +204,7 @@ var viewportWidth = document.documentElement.clientWidth;
 var wid = viewportWidth - 200;
 element.style.cssText = "inline-size: " + wid.toString() + "px;";
 
-var url = "http://127.0.0.1:5167";
+var url = "https://fakesneakysnake.pythonanywhere.com";
 
 var info = {
   "username": "",
@@ -220,19 +220,26 @@ function updateInfo(corQ, totQ) {
   if (parseInt(totQ) != 0) {
     info["totQ"] = parseInt(totQ);
   }
-  console.log(info);
+  console.log(info)
+  console.log(JSON.stringify({
+    "username": info["username"],
+    "password": info["password"],
+    "corQ": info["corQ"],
+    "totQ": info["totQ"]
+  }));
   fetch(url + "/update", {
     method: "POST",
     body: JSON.stringify({
       "username": info["username"],
-      "password": info["password"],
+      "password": info["password"].trim(),
       "corQ": info["corQ"],
       "totQ": info["totQ"]
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     }
-  })
+  }).then((response) => response.text())
+  .then((text) => console.log(text));
 
 }
 
@@ -244,8 +251,8 @@ function login(text) {
   text = text.split(",")
   console.log(text);
   if (text != "Wrong") {
-    info["username"] = text[0];
-    info["password"] = text[1];
+    info["username"] = text[0].trim();
+    info["password"] = text[1].trim();
     info["corQ"] = parseInt(text[2]);
     info["totQ"] = parseInt(text[3]);
     document.getElementById('signedinTag').innerHTML = "Signed In As: " + info["username"];
@@ -281,14 +288,12 @@ function resetInfo() {
 }
 
 document.getElementById('signOut').onclick = function() {
-  //document.getElementById('signin').innerHTML = '<form id="loginform"><input type="text" id="username" placeholder="Username" size="16"><br><input type="text" id="password" placeholder="Password" size="16"><button type="button" id="register">Register</button><button type="button" id="login">Login</button></form>';
-  console.log("aaa");
   document.getElementById('p1').style = "display:block";
   document.getElementById('p2').style = "display:none";
   reset();
   resetColors();
   resetInfo();
-
+  reset();
 }
 document.getElementById('p1').style = "display:block";
 document.getElementById('p2').style = "display:none";
@@ -323,7 +328,7 @@ document.getElementById('login').onclick = function() {
       "password": password
     }),
     headers: {
-      "Content-type": "application/json; charset=UTF-8",
+      "Content-type": "application/json",
     }
   })
     .then((response) => response.text())
