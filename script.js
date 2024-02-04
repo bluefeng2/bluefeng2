@@ -252,7 +252,9 @@ function login(text) {
   text = text.replaceAll("\n", "")
   text = text.replaceAll('"', "")
   text = text.split(",")
-  console.log(text);
+  if (text == "Wrong") {
+    alert("password incorrect or account does not exist")
+  }
   if (text != "Wrong") {
     info["username"] = text[0].trim();
     info["password"] = text[1].trim();
@@ -317,7 +319,30 @@ document.getElementById('register').onclick = function() {
     }
   })
     .then((response) => response.text())
-    .then((text) => console.log(text));
+    .then((text) => reg(text));
+
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    fetch(url + "/login", {
+      method: "POST",
+      body: JSON.stringify({
+        "username": username,
+        "password": password
+      }),
+      headers: {
+        "Content-type": "application/json",
+      }
+    })
+      .then((response) => response.text())
+      .then((text) => login(text));
+}
+
+function reg(text) {
+  console.log(text);
+  if (text == "already exists") {
+    alert("account already exists")
+  }
 }
 
 document.getElementById('login').onclick = function() {
