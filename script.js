@@ -190,15 +190,30 @@ document.getElementById('changeValue').onclick = function() {
   var e = document.getElementById("choices");
   var value = e.options[e.selectedIndex].value;
   var text = e.options[e.selectedIndex].text;
-  if (value == "bac") {
-    data = bac;
-  } else if (value == "entrepeur") {
-    data = entrepenurship;
-  } else if (value == "market") {
-    data = market;
-  } else if (value == "bma") {
-    data = bma;
+  switch(value) {
+    case "bac" :
+      data = bac;
+      break;
+    case "entrepeur":
+      data = entrepeur;
+      break;
+    case "market" :
+      data = market;
+      break;
+    case "bma" :
+      data = bma;
+      break;
+    case "finance" :
+      data = bac;
+      break;
+    case "hoptou" :
+      data = bac;
+      break;
+    case "perfinli" :
+      data = bac;
+      break;
   }
+  
   document.getElementById("header").innerText = "DECA " + text + " Practice Exam thingie";
   getData();
 }
