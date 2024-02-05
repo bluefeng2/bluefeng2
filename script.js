@@ -342,6 +342,14 @@ document.getElementById('register').onclick = function() {
     .then((response) => response.text())
     .then((text) => reg(text));
 
+   
+}
+
+function reg(text) {
+  console.log(text);
+  if (text == "already exists") {
+    alert("account already exists")
+  } else {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
 
@@ -357,12 +365,6 @@ document.getElementById('register').onclick = function() {
     })
       .then((response) => response.text())
       .then((text) => login(text));
-}
-
-function reg(text) {
-  console.log(text);
-  if (text == "already exists") {
-    alert("account already exists")
   }
 }
 
