@@ -5,6 +5,7 @@ var hasReset = 1;
 
 function timerPause(){
 	clearInterval(ints);
+	document.getElementById('timerstartstop').value = "Start";
 }
 
 function timerStart(){
@@ -19,12 +20,15 @@ document.getElementById('timerstartstop').onclick = function() {
 		timerStart();
 	} else{
 		timerPause();
-			document.getElementById('timerstartstop').value = "Start";
 	}
 }
 
 function moveTimer(){
 	timertime--;
+	if (timertime == 0) {
+		timerPause();
+		alert("timer is up!!!");
+	}
 	document.getElementById("timercount").value = convertBack(timertime);
 }
 
