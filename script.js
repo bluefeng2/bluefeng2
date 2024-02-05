@@ -1,7 +1,7 @@
 import entrepenurship from "/entrepenurship.json" assert { type: "json" };
 import bac from "/bac.json" assert { type: "json" };
 import market from "/market.json" assert { type: "json" };
-
+import bma from "/bma.json" assert { type: "json" };
 
 var data = entrepenurship;
 var curAnswer = 0;
@@ -196,6 +196,8 @@ document.getElementById('changeValue').onclick = function() {
     data = entrepenurship;
   } else if (value == "market") {
     data = market;
+  } else if (value == "bma") {
+    data = bma;
   }
   document.getElementById("header").innerText = "DECA " + text + " Practice Exam thingie";
   getData();
