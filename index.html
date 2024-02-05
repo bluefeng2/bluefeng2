@@ -19,10 +19,28 @@
 			</form>
 			<script type="module" src="timer.js"></script>
 		</div>
+		
 
 		<br>
 
-		
+		<div id="leaderboard">
+            <select name="leaderboardChoices" id="leaderboardChoices">
+				<option value="percentage">Correct Percentage</option>
+                <option value="total">Total Questions</option>
+                <option value="correct">Correct Questions</option>
+            </select>
+              
+            <h3 style="text-align: center;">Leaderboard</h3>
+    
+            <div>
+                <p id="leaderboarditems">no one: 1
+                <br>person: 1
+                <br>person: 1</p>
+            </div>
+            
+        </div>
+
+        <br>
 
         <div id="signin">
 			<div id="p1">
@@ -60,6 +78,7 @@
 			<input id="button" type="button" value="Submit">
 		</form>
 	</div>
+	<script type="module" src="leaderboardsignintest.html"></script>
 	
 	<br>
 	<p>Score:</p>
