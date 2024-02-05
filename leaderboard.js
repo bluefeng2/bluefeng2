@@ -49,7 +49,7 @@ function setInfo(values, type) {
     // putting info on leaderboard
     for (var i = 0; i < count; i++) {
       var x = Math.round(((values[i][4]) * 100) * 100) / 100 + "%"
-      final = final + values[i][0] + ": " + x + " "+values[i][2].toString() + "/" + values[i][3].toString()+"<br>"
+      final = final + values[i][0] + ": " + x + " "+values[i][2].toString() + "/" + values[i][3].toString()+"<br><br>"
     }
 
     document.getElementById("leaderboarditems").innerHTML = final

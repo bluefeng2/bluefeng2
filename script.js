@@ -320,6 +320,8 @@ document.getElementById('signOut').onclick = function() {
   resetColors();
   resetInfo();
   reset();
+  total = 0;
+  correctCount = 0;
 }
 document.getElementById('p1').style = "display:block";
 document.getElementById('p2').style = "display:none";
