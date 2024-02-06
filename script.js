@@ -1,4 +1,4 @@
-import entrepenurship from "/questions/entrepenurship.json" assert { type: "json" };
+import entrepeur from "/questions/entrepenurship.json" assert { type: "json" };
 import bac from "/questions/bac.json" assert { type: "json" };
 import market from "/questions/market.json" assert { type: "json" };
 import bma from "/questions/bma.json" assert { type: "json" };
@@ -7,7 +7,7 @@ import hoptou from "/questions/hoptou.json" assert { type: "json" };
 import perfinli from "/questions/perfinli.json" assert { type: "json" };
 
 
-var data = entrepenurship;
+var data = entrepeur;
 var curAnswer = 0;
 getData();
 
