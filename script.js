@@ -4,7 +4,7 @@ var bma;
 var finance;
 var hoptou;
 var perfinli;
-var makret
+var market;
 
 await fetch("/questions/entrepenurship.json" ).then(response => response.json())
  .then(data => {
