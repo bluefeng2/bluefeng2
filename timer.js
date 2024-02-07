@@ -9,15 +9,20 @@ function timerPause(){
 }
 
 function timerStart(){
-	ints = setInterval(moveTimer, 1000);
-	convertTimer();
+	
+		ints = setInterval(moveTimer, 1000);	convertTimer();
+	
 }
 
 document.getElementById('timerstartstop').onclick = function() {
 	var docs = document.getElementById('timerstartstop').value;
 	if (docs == "Start"){
+		convertTimer()
+		if (timertime != 0){
 			document.getElementById('timerstartstop').value = "Pause";
-		timerStart();
+			timerStart();
+		}
+		
 	} else{
 		timerPause();
 	}
@@ -28,8 +33,10 @@ function moveTimer(){
 	if (timertime == 0) {
 		timerPause();
 		alert("timer is up!!!");
+	} else {
+		timertime--;
+
 	}
-	timertime--;
 	document.getElementById("timercount").value = convertBack(timertime);
 }
 
