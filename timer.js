@@ -24,11 +24,12 @@ document.getElementById('timerstartstop').onclick = function() {
 }
 
 function moveTimer(){
-	timertime--;
+	
 	if (timertime == 0) {
 		timerPause();
 		alert("timer is up!!!");
 	}
+	timertime--;
 	document.getElementById("timercount").value = convertBack(timertime);
 }
 
