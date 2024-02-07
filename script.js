@@ -4,6 +4,7 @@ var bma;
 var finance;
 var hoptou;
 var perfinli;
+var makret
 
 await fetch("/questions/entrepenurship.json" ).then(response => response.json())
  .then(data => {
@@ -35,6 +36,11 @@ await fetch("/questions/entrepenurship.json" ).then(response => response.json())
     perfinli =data ;
  }); 
 
+ await fetch("/questions/market.json" ).then(response => response.json())
+ .then(data => {
+    market =data ;
+ }); 
+
 
  window.mobileCheck = function() {
   let check = false;
@@ -44,7 +50,7 @@ await fetch("/questions/entrepenurship.json" ).then(response => response.json())
 
 if (window.mobileCheck()) {
   document.getElementById("side").style = "display:none";
-  
+
 }
 
 
