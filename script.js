@@ -1,10 +1,42 @@
-import entrepeur from "/questions/entrepenurship.json" ;
-import bac from "/questions/bac.json" ;
-import market from "/questions/market.json" ;
-import bma from "/questions/bma.json" ;
-import finance from "/questions/finance.json";
-import hoptou from "/questions/hoptou.json" ;
-import perfinli from "/questions/perfinli.json"; 
+var entrepeur;
+var bac;
+var bma;
+var finance;
+var hoptou;
+var perfinli;
+
+await fetch("/questions/entrepenurship.json" ).then(response => response.json())
+ .then(data => {
+    entrepeur =data ;
+ }); 
+
+ await fetch("/questions/bac.json" ).then(response => response.json())
+ .then(data => {
+    bac =data ;
+ }); 
+
+ await fetch("/questions/bma.json" ).then(response => response.json())
+ .then(data => {
+    bma =data ;
+ }); 
+
+ await fetch("/questions/finance.json" ).then(response => response.json())
+ .then(data => {
+    finance =data ;
+ }); 
+
+ await fetch("/questions/hoptou.json" ).then(response => response.json())
+ .then(data => {
+    hoptou =data ;
+ }); 
+
+ await fetch("/questions/perfinli.json" ).then(response => response.json())
+ .then(data => {
+    perfinli =data ;
+ }); 
+
+
+  console.log(entrepeur)
 
 
 var data = entrepeur;
