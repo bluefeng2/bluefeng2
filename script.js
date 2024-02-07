@@ -298,8 +298,6 @@ function login(text) {
 		document.getElementById("score2").innerHTML = Math.round(((correctCount / total) * 100) * 100) / 100 + "%";
 	}
 
-    
-
   }
 
 }

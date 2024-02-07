@@ -14,6 +14,11 @@ function getInfo(type) {
 function setInfo(values, type) {
   var indexToSortBy;
   var isPercentage = 0;
+  for (var i = values.length-1; i >= 0; i--) {
+    if (values[i][3] < 10) {
+      values.splice(i, 1);
+    }
+  }
 
   switch (type) {
     case "total":
@@ -52,6 +57,9 @@ function setInfo(values, type) {
       final = final + values[i][0] + ": " + x + " "+values[i][2].toString() + "/" + values[i][3].toString()+"<br><br>"
     }
 
+    final = final.slice(0,-4);
+
+
     document.getElementById("leaderboarditems").innerHTML = final
   } else { 
     values.sort(function(a, b) {
@@ -66,8 +74,11 @@ function setInfo(values, type) {
     }
     // putting info on leaderboard
     for (var i = 0; i < count; i++) {
-      final = final + values[i][0] + ": " +values[i][indexToSortBy] + "<br>"
+      final = final + values[i][0] + ": " +values[i][indexToSortBy] + "<br><br>"
     }
+
+
+    final = final.slice(0,-4);
 
     document.getElementById("leaderboarditems").innerHTML = final
   }
