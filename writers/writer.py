@@ -1,6 +1,6 @@
 import json
 
-f = open("contetn.txt", "r")
+f = open("C:\\Users\\lingf\\OneDrive\\Desktop\\bluefeng2.github.io\\writers\\contetn.txt", "r")
 vals = list(filter(None ,f.read().split('\n')))
 
 questions = []
@@ -36,7 +36,10 @@ for i,question in enumerate(questions):
         print(question)
         print(answers[i])
     for answer in answers[i]:
-        newAnswers.append(answer.split(". ")[1])
+        try:
+            newAnswers.append(answer.split(". ")[1])
+        except:
+            print(i)
     tempList.append(newAnswers)
     tempList.append(newAnswers[correctAnswers[i]-1])
     mydict[i] = tempList

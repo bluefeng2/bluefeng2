@@ -53,8 +53,7 @@ if (window.mobileCheck()) {
 
 }
 
-
-var data = entrepeur;
+var data = market;
 var curAnswer = 0;
 getData();
 
