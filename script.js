@@ -202,7 +202,7 @@ function getAiHelp() {
   document.getElementById('aihelp').showModal();
   document.getElementById("aicontent").innerHTML = "Loading...";
   var question = document.getElementById("question").innerHTML + "\n" +  document.getElementById("la1").innerHTML + "\n" +  document.getElementById("la2").innerHTML + "\n" +  document.getElementById("la3").innerHTML + "\n" +  document.getElementById("la4").innerHTML;
-  var query = 'Answer this question:\n\n'+question+'\n\nProvide an in-depth explanation of your answer. Include the question in your answer and make it less than 200 words.';
+  var query = 'Answer this question:\n\n'+question+'\n\nProvide an in-depth explanation of your answer. Include the question in your answer and make it less than 200 words. Make sure to include why this answer is correct and the others are wrong.';
   
   fetch(llmUrl, {
     method: "POST",
