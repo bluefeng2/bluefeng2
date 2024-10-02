@@ -16,12 +16,12 @@ document.getElementById('minimizeLeaderboard').onclick = function() {
   if (leaderboardMinimized) {
     document.getElementById("notnessecaryleaderboard1").innerHTML = '<select name="leaderboardChoices" id="leaderboardChoices"><option value="percentage">Correct Percentage</option><option value="total">Total Questions</option><option value="correct">Correct Questions</option></select>';
     document.getElementById("notnessecaryleaderboard2").innerHTML = '<p id="leaderboarditems">no one: 1<br>person: 1<br>person: 1</p><p style="font-size: 10px;">*accounts must have more than 10 questions answered to show up</p>';
-    document.getElementById("minimizeLeaderboard").innerHTML = 'Unminimize';
+    document.getElementById("minimizeLeaderboard").innerHTML = 'Minimize';
     leaderboardMinimized = false;
   } else {
     document.getElementById("notnessecaryleaderboard1").innerHTML = '';
     document.getElementById("notnessecaryleaderboard2").innerHTML = '';
-    document.getElementById("minimizeLeaderboard").innerHTML = 'Minimize';
+    document.getElementById("minimizeLeaderboard").innerHTML = 'Maximize';
     leaderboardMinimized = true;
   }
   getInfo();
