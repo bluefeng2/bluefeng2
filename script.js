@@ -197,7 +197,7 @@ function aiHelpButton(onOff) {
 aiHelpButton(false);
 
 const llmUrl = "https://api.groq.com/openai/v1/chat/completions";
-const apiKey = process.env.LLMAPIKEY;
+const apiKey = "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";
 function getAiHelp() {
   document.getElementById('aihelp').showModal();
   document.getElementById("aicontent").innerHTML = "Loading...";
