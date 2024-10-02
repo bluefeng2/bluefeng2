@@ -179,7 +179,6 @@ function addtotQ() {
   }
 }
 
-
 function resetColors() {
   document.getElementById("la1").style.color = "black";
   document.getElementById("la2").style.color = "black";
@@ -397,12 +396,13 @@ function login(text) {
     total = info["totQ"];
     document.getElementById("score").innerHTML = correctCount.toString() + "/" + total.toString();
 
-	if (total == 0, correctCount == 0) {
-		document.getElementById("score2").innerHTML = "0%";
-	} else {
-		document.getElementById("score2").innerHTML = Math.round(((correctCount / total) * 100) * 100) / 100 + "%";
-	}
+    if (total == 0, correctCount == 0) {
+      document.getElementById("score2").innerHTML = "0%";
+    } else {
+      document.getElementById("score2").innerHTML = Math.round(((correctCount / total) * 100) * 100) / 100 + "%";
+    }
 
+    document.getElementById("deleteacc").style.visibility = "visible";
   }
 
 }
@@ -425,10 +425,10 @@ document.getElementById('signOut').onclick = function() {
   reset();
   total = 0;
   correctCount = 0;
+  document.getElementById("deleteacc").style.visibility = "hidden";
 }
 document.getElementById('p1').style = "display:block";
 document.getElementById('p2').style = "display:none";
-
 
 document.getElementById('register').onclick = function() {
   var username = document.getElementById("username").value;
@@ -446,8 +446,42 @@ document.getElementById('register').onclick = function() {
   })
     .then((response) => response.text())
     .then((text) => reg(text));
+}
 
-   
+document.getElementById('deleteacc').onclick = function() {
+  fetch(url + "/deleteAcc", {
+    method: "POST",
+    body: JSON.stringify({
+      "username": info["username"],
+      "password": info["password"]
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    }
+  })
+    .then((response) => response.text())
+    .then((text) => de2(text));
+}
+document.getElementById("deleteacc").style.visibility = "hidden";
+
+function de2(text) {
+  console.log(text)
+  if (text == "completed") {
+    alert("Account Deleted")
+  } else if(text == "Wrong credentials") {
+    alert("Wrong Credentials")
+  } else {
+    alert("error")
+  }
+  document.getElementById('p1').style = "display:block";
+  document.getElementById('p2').style = "display:none";
+  reset();
+  resetColors();
+  resetInfo();
+  reset();
+  total = 0;
+  correctCount = 0;
+  document.getElementById("deleteacc").style.visibility = "hidden";
 }
 
 function reg(text) {
@@ -455,6 +489,7 @@ function reg(text) {
   if (text == "already exists") {
     alert("account already exists")
   } else {
+    alert("account created")
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
 
