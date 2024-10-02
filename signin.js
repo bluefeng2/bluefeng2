@@ -63,6 +63,8 @@ document.getElementById('register').onclick = function() {
         })
         .then((response) => response.text())
         .then((text) => console.log(text));
+
+        alert("account created");
 }
 
 document.getElementById('login').onclick = function() {

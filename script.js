@@ -55,6 +55,7 @@ if (window.mobileCheck()) {
 
 var data = market;
 var curAnswer = 0;
+var aitoggle = false;
 getData();
 
 var total = 0;
@@ -86,22 +87,26 @@ function shuffleArray(array) {
 }
 
 function getData() {
-  var datas = data[getRandomInt(Object.keys(data).length)]
+  if (aitoggle) {
+    
+  } else {
+    var datas = data[getRandomInt(Object.keys(data).length)]
 
-  datas[0] = datas[0].replaceAll("NEWLINE", "<br />");
-
-  document.getElementById("question").innerHTML = datas[0];
-  var shuffledIndex = shuffleArray([0, 1, 2, 3]);
-  var shuffledArray = ["A. ", "B. ", "C. ", "D. "];
-  var answeredArray = ["", "", "", ""];
-
-  for (var i = 0; i < 4; i++) {
-    shuffledArray[i] = shuffledArray[i] + datas[1][shuffledIndex[i]];
-    answeredArray[i] = datas[1][shuffledIndex[i]];
+    datas[0] = datas[0].replaceAll("NEWLINE", "<br />");
+  
+    document.getElementById("question").innerHTML = datas[0];
+    var shuffledIndex = shuffleArray([0, 1, 2, 3]);
+    var shuffledArray = ["A. ", "B. ", "C. ", "D. "];
+    var answeredArray = ["", "", "", ""];
+  
+    for (var i = 0; i < 4; i++) {
+      shuffledArray[i] = shuffledArray[i] + datas[1][shuffledIndex[i]];
+      answeredArray[i] = datas[1][shuffledIndex[i]];
+    }
+  
+    var answerIndex = answeredArray.indexOf(datas[2]);
+    curAnswer = answerIndex + 1;
   }
-
-  var answerIndex = answeredArray.indexOf(datas[2]);
-  curAnswer = answerIndex + 1;
 
   document.getElementById("la1").innerHTML = shuffledArray[0];
   document.getElementById("la2").innerHTML = shuffledArray[1];
@@ -182,15 +187,69 @@ function resetColors() {
   document.getElementById("la4").style.color = "black";
 }
 
+function aiHelpButton(onOff) {
+  if (onOff) {
+    document.getElementById('aiHelpButton').style.visibility = 'visible';
+  } else {
+    document.getElementById("aiHelpButton").style.visibility = "hidden";
+  }
+}
+aiHelpButton(false);
+
+const llmUrl = "https://api.groq.com/openai/v1/chat/completions";
+const apiKey = "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";
+function getAiHelp() {
+  document.getElementById('aihelp').showModal();
+  document.getElementById("aicontent").innerHTML = "Loading...";
+  var question = document.getElementById("question").innerHTML + "\n" +  document.getElementById("la1").innerHTML + "\n" +  document.getElementById("la2").innerHTML + "\n" +  document.getElementById("la3").innerHTML + "\n" +  document.getElementById("la4").innerHTML;
+  var query = 'Answer this question:\n\n'+question+'\n\nProvide an in-depth explanation of your answer. Include the question in your answer and make it less than 200 words.';
+  
+  fetch(llmUrl, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "messages": [
+        {
+          "role": "user",
+          "content": query
+        }
+      ],
+      "model": "llama3-8b-8192"
+    })
+  })
+    .then((response) => response.text())
+    .then((text) => setDialog(text));
+  
+
+    }
+
+function setDialog(text) {
+  var content = JSON.parse(text)["choices"][0]["message"]["content"];
+  
+  content = content.replaceAll("\n", "<br>");
+  document.getElementById("aicontent").innerHTML = content;
+}
+
+document.getElementById('aiHelpButton').onclick = function() {
+  getAiHelp();
+}
+
 document.getElementById('button').onclick = function() {
   if (document.getElementById("button").value == "Submit") {
-    check();
-    total += 1;
-    reset();
+    if(check()) {
+      total += 1;
+      reset();
+
+      aiHelpButton(true);
+    }
   } else {
     getData();
     resetColors();
     document.getElementById("button").value = "Submit";
+    aiHelpButton(false)
   }
   
   document.getElementById("score").innerHTML = correctCount.toString() + "/" + total.toString();
@@ -430,4 +489,16 @@ document.getElementById('login').onclick = function() {
   })
     .then((response) => response.text())
     .then((text) => login(text));
+}
+
+document.getElementById('aibutton').onclick = function() {
+    if (aitoggle) {
+        document.getElementById('aibutton').innerHTML = "Turn on AI";
+        document.getElementById('aiwarning').innerHTML = "";
+        aitoggle = false;
+    } else {
+        document.getElementById('aibutton').innerHTML = "Turn off AI";
+        document.getElementById('aiwarning').innerHTML = "May have bugs/increase wait time/wrong answers";
+        aitoggle = true;
+    }
 }
