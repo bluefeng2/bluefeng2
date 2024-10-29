@@ -18,14 +18,19 @@ document.getElementById('minimizeLeaderboard').onclick = function() {
     document.getElementById("notnessecaryleaderboard2").innerHTML = '<p id="leaderboarditems">no one: 1<br>person: 1<br>person: 1</p><p style="font-size: 10px;">*accounts must have more than 10 questions answered to show up</p>';
     document.getElementById("minimizeLeaderboard").innerHTML = 'Minimize';
     leaderboardMinimized = false;
+    getInfo();
   } else {
     document.getElementById("notnessecaryleaderboard1").innerHTML = '';
     document.getElementById("notnessecaryleaderboard2").innerHTML = '';
     document.getElementById("minimizeLeaderboard").innerHTML = 'Maximize';
     leaderboardMinimized = true;
   }
-  getInfo();
+  
 }
+document.getElementById("notnessecaryleaderboard1").innerHTML = '';
+document.getElementById("notnessecaryleaderboard2").innerHTML = '';
+document.getElementById("minimizeLeaderboard").innerHTML = 'Maximize';
+leaderboardMinimized = true;
 
 function setInfo(values, type) {
   var indexToSortBy;
@@ -93,7 +98,6 @@ function setInfo(values, type) {
       final = final + values[i][0] + ": " +values[i][indexToSortBy] + "<br><br>"
     }
 
-
     final = final.slice(0,-4);
 
     document.getElementById("leaderboarditems").innerHTML = final
@@ -104,11 +108,13 @@ function setInfo(values, type) {
 updateInfo();
 
 function updateInfo() {
-  var e = document.getElementById("leaderboardChoices");
-  var value = e.options[e.selectedIndex].value;
-  var text = e.options[e.selectedIndex].text;
-  getInfo(value);
   setTimeout(updateInfo, 1000);
+  if (leaderboardMinimized == false) {
+    var e = document.getElementById("leaderboardChoices");
+    var value = e.options[e.selectedIndex].value;
+    var text = e.options[e.selectedIndex].text;
+    getInfo(value);
+  }
 }
 
 function chunkArray(arr, chunkSize) {
