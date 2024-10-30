@@ -87,11 +87,13 @@ function shuffleArray(array) {
 }
 
 function getData() {
-  if (aitoggle) {
+  if (aitoggle) { 
     
   } else {
-    var datas = data[getRandomInt(Object.keys(data).length)]
-
+    var num = getRandomInt(Object.keys(data).length);
+    console.log(num);
+    var datas = data[num];
+    
     datas[0] = datas[0].replaceAll("NEWLINE", "<br />");
   
     document.getElementById("question").innerHTML = datas[0];
@@ -349,13 +351,7 @@ function updateInfo(corQ, totQ) {
   if (parseInt(totQ) != 0) {
     info["totQ"] = parseInt(totQ);
   }
-  console.log(info)
-  console.log(JSON.stringify({
-    "username": info["username"],
-    "password": info["password"],
-    "corQ": info["corQ"],
-    "totQ": info["totQ"]
-  }));
+
   fetch(url + "/update", {
     method: "POST",
     body: JSON.stringify({
@@ -465,7 +461,6 @@ document.getElementById('deleteacc').onclick = function() {
 document.getElementById("deleteacc").style.visibility = "hidden";
 
 function de2(text) {
-  console.log(text)
   if (text == "completed") {
     alert("Account Deleted")
   } else if(text == "Wrong credentials") {
@@ -485,7 +480,6 @@ function de2(text) {
 }
 
 function reg(text) {
-  console.log(text);
   if (text == "already exists") {
     alert("account already exists")
   } else {
@@ -526,6 +520,7 @@ document.getElementById('login').onclick = function() {
     .then((text) => login(text));
 }
 
+/*
 document.getElementById('aibutton').onclick = function() {
     if (aitoggle) {
         document.getElementById('aibutton').innerHTML = "Turn on AI";
@@ -537,3 +532,4 @@ document.getElementById('aibutton').onclick = function() {
         aitoggle = true;
     }
 }
+*/
