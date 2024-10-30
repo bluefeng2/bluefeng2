@@ -1,6 +1,6 @@
 import json
 
-f = open("C:\\Users\\lingf\\OneDrive\\Desktop\\bluefeng2.github.io\\writers\\contetn.txt", "r")
+f = open("D:\\Users\\lingf\\OneDrive\\Desktop\\bluefeng2.github.io\\writers\\contetn.txt", "r")
 vals = list(filter(None ,f.read().split('\n')))
 
 questions = []
@@ -10,10 +10,9 @@ correctAnswers = []
 count = 0
 tempList = []
 
-for item in vals:
+for i, item in enumerate(vals):
     if item[0] == "*":
         item = item[2:]
-
     if item[1] == "." or item[2] == "." or item[3] == ".":
         questions.append(item.strip())
     else:
@@ -26,15 +25,13 @@ for item in vals:
             answers.append(tempList)
             tempList = []
             count = 0
+            
 
 f.close()
 mydict = {}
 for i,question in enumerate(questions):
     tempList=[question]
     newAnswers = []
-    if i >= 1000:
-        print(question)
-        print(answers[i])
     for answer in answers[i]:
         try:
             newAnswers.append(answer.split(". ")[1])
@@ -44,7 +41,8 @@ for i,question in enumerate(questions):
     tempList.append(newAnswers[correctAnswers[i]-1])
     mydict[i] = tempList
 
-print(mydict)
-f = open("content.json","w")
-f.write(json.dumps(mydict))
-f.close()
+with open("content.json","w") as f:
+    f.write(json.dumps(mydict))
+    f.flush()
+    f.close()
+print(json.dumps(mydict))
