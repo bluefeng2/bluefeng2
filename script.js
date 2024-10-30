@@ -324,7 +324,7 @@ document.getElementById('changeValue').onclick = function() {
       break;
   }
   
-  document.getElementById("header").innerText = "DECA " + text + " Practice Exam thingie";
+  document.getElementById("header").innerText = "DECA " + text + " Practice Exam";
   getData();
 }
 
