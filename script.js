@@ -56,6 +56,8 @@ if (window.mobileCheck()) {
 var data = market;
 var curAnswer = 0;
 var aitoggle = false;
+var wrongQuestions = [];
+var currentQuestion = 0;
 getData();
 
 var total = 0;
@@ -90,7 +92,21 @@ function getData() {
   if (aitoggle) { 
     
   } else {
-    var num = getRandomInt(Object.keys(data).length);
+    if (wrongQuestions.length >= 1 ) {
+      if (wrongQuestions[0][1] == 0) {
+        var num = wrongQuestions.shift()[0];
+      } else {
+        var num = getRandomInt(Object.keys(data).length);
+        for (var i = 0; i < wrongQuestions.length; i++) { 
+          wrongQuestions[i][1] -= 1;
+        }
+      }
+    } else {
+      var num = getRandomInt(Object.keys(data).length);
+    }
+    
+    console.log(wrongQuestions);
+    currentQuestion = num;
     console.log(num);
     var datas = data[num];
     
@@ -154,6 +170,7 @@ function check() {
         if (info["username"] != "") {
           addtotQ();
         }
+        wrongQuestions.push([currentQuestion, 10]);
         return true;
       }
     }
