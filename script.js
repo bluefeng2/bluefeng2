@@ -105,7 +105,6 @@ function getData() {
       var num = getRandomInt(Object.keys(data).length);
     }
     
-    console.log(wrongQuestions);
     currentQuestion = num;
     console.log(num);
     var datas = data[num];
